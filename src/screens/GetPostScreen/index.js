@@ -18,16 +18,21 @@ import {
 import styles from './styles';
 import { useDispatch, useSelector } from 'react-redux';
 import { getPost } from '../../redux/actions/postActions';
+import { useFocusEffect } from '@react-navigation/native';
+
 const GetPost = (props) => {
     const dispatch = useDispatch()
     const posts = useSelector(state => state.postReducer.posts);
 
-    useEffect(() => {
-        async function fetchData() {
-            await dispatch(getPost());
-        }
-        fetchData();
-    }, []);
+    useFocusEffect(
+        React.useCallback(() => {
+            async function fetchData() {
+                console.log('shh')
+                await dispatch(getPost());
+            }
+            fetchData();
+        }, [])
+    );
     const backToCreate = () => {
         props.navigation.navigate('CreatePost')
     }
