@@ -9,20 +9,9 @@ const styles = StyleSheet.create({
         width: width * 90,
         alignSelf: 'center'
     },
-    headerContainer: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'space-between'
-    },
     heading: {
         fontWeight: 'bold',
         fontSize: 6.5 * width
-    },
-    backToCreate: {
-        borderWidth: 1,
-        borderColor: 'grey',
-        padding: 10,
-        borderRadius: 4
     },
     listItem: {
         // flexDirection: "row",
@@ -30,16 +19,34 @@ const styles = StyleSheet.create({
         paddingBottom: 2 * width,
         paddingTop: 4 * width,
     },
-    title: {
-        fontWeight: 'bold',
-        fontSize: 4 * width
-    },
-    input: {
+    submitButton: {
         height: 40,
         margin: 12,
         borderWidth: 1,
-        padding: 10,
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: 'red'
     },
+    errorText: {
+        marginLeft: 12,
+        color: 'red'
+    },
+    successText: {
+        marginLeft: 12,
+        color: 'green'
+    },
+    submitButtonText: {
+        color: '#FFF',
+        fontSize: width * 4.2,
+        fontWeight: 'bold'
+    },
+    postScreenButton:{
+        height: 40,
+        margin: 12,
+        borderWidth: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+    }
 });
 
 export default styles;

@@ -1,17 +1,32 @@
 import React from 'react';
-import { Provider } from 'react-redux';
-import { PersistGate } from 'redux-persist/src/integration/react';
-import { store, persistor } from './src/redux/store';
-import { NavigationContainer } from '@react-navigation/native';
-import { AppStack } from './src/Navigation';
+import {PersistGate} from 'redux-persist/src/integration/react';
+import {store, persistor} from './src/redux/store';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {NavigationContainer} from '@react-navigation/native';
+import {AppStack, AuthStack} from './src/Navigation';
+import {Provider, useSelector} from 'react-redux';
+
+const Root = createNativeStackNavigator();
+const RootStack = () => {
+  const token = useSelector(state => state.authReducer.token);
+  return (
+    <Root.Navigator screenOptions={{headerShown: false}}>
+      {token ? (
+        <Root.Screen name="AppStack" component={AppStack} />
+      ) : (
+        <Root.Screen name="AuthStack" component={AuthStack} />
+      )}
+    </Root.Navigator>
+  );
+};
 
 const Navigation = () => {
   return (
     <NavigationContainer>
-      <AppStack />
+      <RootStack />
     </NavigationContainer>
-  )
-}
+  );
+};
 class App extends React.Component {
   render() {
     return (
